@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="theme-color" content="#F6F1E7">
+<meta name="description" content="Maison Éclat — hand-finished ready-to-wear, ateliers in Paris and Jaipur. Couture craftsmanship meets contemporary design.">
+<title>Maison Éclat — Hand-Finished Couture</title>
+
+<link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<style>
+/* ============================================
+   GLOBAL MODERN E-COMMERCE ENHANCEMENTS
+   ============================================ */
+:root {
+  --font-display: 'Instrument Serif', serif;
+  --glass-light: rgba(251, 248, 242, 0.85);
+  --glass-dark: rgba(27, 26, 23, 0.75);
+  --accent-gradient: linear-gradient(135deg, var(--wine) 0%, var(--gold) 100%);
+  --shadow-soft: 0 8px 32px -12px rgba(27,26,23,0.25);
+  --shadow-elevated: 0 20px 60px -15px rgba(27,26,23,0.3);
+}
+
+/* Smooth scroll + custom scrollbar */
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb { 
+  background: linear-gradient(var(--wine), var(--gold)); 
+  border-radius: 10px;
+  border: 2px solid var(--ivory);
+}
+::selection { background: var(--wine); color: #fff; }
+
+/* ============================================
+   PROGRESS BAR + UTILITIES
+   ============================================ */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: var(--accent-gradient);
+  z-index: 9999;
+  transition: width 0.1s ease;
+}
+
+.glass {
+  background: var(--glass-light);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1px solid rgba(255,255,255,0.6);
+  box-shadow: var(--shadow-soft);
+}
+
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--gold);
+  margin: 0 auto;
+}
+.ornament span {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament span:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+/* ============================================
+   PRELOADER
+   ============================================ */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--ivory);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.preloader-content { text-align: center; }
+.preloader-brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 42px;
+  color: var(--wine);
+  letter-spacing: 0.05em;
+  margin-bottom: 20px;
+}
+.preloader-note {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ============================================
+   HEADER ENHANCEMENTS
+   ============================================ */
+.site-header {
+  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+.site-header.scrolled {
+  background: var(--glass-light);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: 0 2px 20px -8px rgba(27,26,23,0.15);
+}
+
+/* ============================================
+   HERO - CINEMATIC
+   ============================================ */
+.hero {
+  position: relative;
+  padding: 100px 0 120px;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(176,141,87,0.08) 0%, transparent 60%);
+  pointer-events: none;
+}
+.hero-copy { position: relative; z-index: 2; }
+.hero-visual { position: relative; z-index: 2; }
+
+.hero-copy h1 {
+  font-size: clamp(42px, 6vw, 76px);
+  line-height: 1.05;
+  margin-bottom: 28px;
+  background: linear-gradient(135deg, var(--ink) 0%, var(--wine) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 24px;
+  background: var(--cream-card);
+  border: 1px dashed var(--gold);
+  margin-top: 40px;
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+.hero-badge i { color: var(--gold); font-size: 16px; }
+
+/* Floating card */
+.hero-float {
+  position: absolute;
+  right: -20px;
+  bottom: 60px;
+  padding: 20px 24px;
+  max-width: 280px;
+  animation: float 6s ease-in-out infinite;
+}
+.hero-float strong {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.hero-float span {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ============================================
+   FEATURE STRIP
+   ============================================ */
+.feature-strip {
+  background: var(--cream-card);
+  padding: 40px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 30px;
+}
+.feature-item {
+  text-align: center;
+  padding: 20px;
+}
+.feature-item i {
+  font-size: 28px;
+  color: var(--wine);
+  margin-bottom: 14px;
+  display: block;
+}
+.feature-item h4 {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.feature-item p {
+  font-size: 12px;
+  color: var(--taupe);
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .feature-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   COLLECTION CARDS - MODERN
+   ============================================ */
+.collection-card {
+  position: relative;
+  overflow: hidden;
+  height: 480px;
+  border-radius: 4px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.collection-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-elevated);
+}
+.collection-card .overlay {
+  background: linear-gradient(180deg, transparent 50%, rgba(27,26,23,0.85) 100%);
+}
+
+/* ============================================
+   LOOKBOOK SWIPER
+   ============================================ */
+.lookbook-swiper {
+  padding: 20px 0 60px !important;
+  overflow: visible !important;
+}
+.lookbook-slide {
+  height: 520px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--cream-card);
+  transition: transform 0.5s ease;
+}
+.swiper-slide-active .lookbook-slide {
+  transform: scale(1.02);
+}
+.lookbook-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s ease;
+}
+.swiper-slide-active .lookbook-slide img {
+  transform: scale(1.08);
+}
+.lookbook-caption {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 24px;
+  padding: 20px 24px;
+  border-radius: 4px;
+}
+.lookbook-caption h3 {
+  font-size: 22px;
+  font-style: italic;
+  margin: 0 0 6px;
+}
+.lookbook-caption span {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wine);
+}
+.lookbook-swiper .swiper-pagination-bullet {
+  background: var(--gold);
+  opacity: 0.4;
+  width: 10px;
+  height: 10px;
+}
+.lookbook-swiper .swiper-pagination-bullet-active {
+  background: var(--wine);
+  opacity: 1;
+  width: 30px;
+  border-radius: 5px;
+}
+
+/* ============================================
+   FABRIC LIBRARY - MODERN CARDS
+   ============================================ */
+.fabric-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+.fabric-card {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  padding: 32px 28px;
+  border-radius: 4px;
+  transition: all 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.fabric-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent-gradient);
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.fabric-card:hover::before {
+  transform: scaleX(1);
+}
+.fabric-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-elevated);
+  transform: translateY(-6px);
+}
+.fabric-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 1px dashed var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--wine);
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.fabric-card h3 {
+  font-size: 22px;
+  font-style: italic;
+  margin-bottom: 12px;
+}
+.fabric-card p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+@media (max-width: 1100px) {
+  .fabric-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .fabric-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   CRAFTSMAN SECTION
+   ============================================ */
+.craftsman-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+.craftsman-card {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  transition: all 0.35s ease;
+}
+.craftsman-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow-soft);
+  transform: translateY(-4px);
+}
+.craftsman-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto 20px;
+  border: 3px solid var(--ivory);
+  box-shadow: 0 8px 24px -8px rgba(27,26,23,0.2);
+}
+.craftsman-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.craftsman-card h4 {
+  font-size: 18px;
+  font-style: italic;
+  margin-bottom: 4px;
+}
+.craftsman-card .location {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 14px;
+}
+.craftsman-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+@media (max-width: 900px) {
+  .craftsman-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .craftsman-grid { grid-template-columns: 1fr; }
+}
+
+/* ============================================
+   METHOD SECTION
+   ============================================ */
+.method-timeline {
+  position: relative;
+  margin-top: 60px;
+}
+.method-timeline::before {
+  content: '';
+  position: absolute;
+  top: 32px;
+  left: 10%;
+  right: 10%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  z-index: 0;
+}
+.method-step {
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+.method-number {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--cream-card);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 24px;
+  color: var(--wine);
+  box-shadow: var(--shadow-soft);
+}
+.method-step h4 {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 10px;
+}
+.method-step p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 240px;
+  margin: 0 auto;
+}
+
+/* ============================================
+   QUOTE SECTION
+   ============================================ */
+.quote-section {
+  padding: 100px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.quote-section::before {
+  content: '"';
+  position: absolute;
+  top: -40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 280px;
+  color: var(--gold);
+  opacity: 0.08;
+  line-height: 1;
+}
+.quote-section blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(26px, 3.5vw, 42px);
+  line-height: 1.4;
+  max-width: 900px;
+  margin: 0 auto 30px;
+  color: var(--ink);
+  position: relative;
+  z-index: 1;
+}
+.quote-attribution {
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ============================================
+   BACK TO TOP
+   ============================================ */
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--glass-light);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+  color: var(--wine);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.35s ease;
+  z-index: 500;
+  cursor: pointer;
+  box-shadow: var(--shadow-soft);
+}
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--wine);
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Parallax images */
+.parallax-wrap {
+  overflow: hidden;
+  position: relative;
+}
+.parallax-wrap img {
+  will-change: transform;
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="progressBar"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div class="preloader-content">
+    <div class="preloader-brand">Maison Éclat</div>
+    <div class="ornament" style="margin: 24px 0;">
+      <span></span><i class="fas fa-asterisk"></i><span></span>
+    </div>
+    <div class="preloader-note">
+      <i class="fas fa-circle-notch fa-spin"></i> Preparing the Atelier
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span><i class="fas fa-gem"></i>&nbsp; COMPLIMENTARY SHIPPING OVER $150</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-rotate-left"></i>&nbsp; 30-DAY RETURNS</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+    <span><i class="fas fa-gem"></i>&nbsp; COMPLIMENTARY SHIPPING OVER $150</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-rotate-left"></i>&nbsp; 30-DAY RETURNS</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">MAISON ÉCLAT<small>Atelier Paris × Jaipur · Est. 2016</small></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Collection</a>
+      <a href="about.html">Maison</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="fa fa-search"></i></button>
+      <a href="products.html" class="icon-btn" aria-label="Wishlist" style="display:none" id="wishNavIcon"><i class="fa fa-heart"></i></a>
+      <a href="#" class="icon-btn" id="cartToggle" aria-label="Cart">
+        <i class="fa fa-shopping-bag"></i>
+        <span class="badge-count cart-count">0</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fa fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="search-panel" id="searchPanel">
+    <div class="container">
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search the collection — "trench", "silk", "gold hoop"…">
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="container hero">
+  <div class="hero-copy reveal">
+    <div class="eyebrow"><i class="fas fa-spa"></i> Autumn Collection · Paris × Jaipur</div>
+    <h1>Couture crafted like<br>a <em>promise</em>, kept.</h1>
+    <p style="font-size: 18px; color: var(--ink-soft); max-width: 520px; margin-bottom: 36px; line-height: 1.85;">
+      Every Maison Éclat piece begins as honest cloth — mulberry and Banarasi silk, brushed Pashmina, vegetable-tanned leather — and passes through eleven pairs of hands. Cut in Paris, embroidered with zari in Jaipur, finished with a signature stitch you'll feel before you see.
+    </p>
+    <div class="hero-cta">
+      <a href="products.html" class="btn btn-gold"><i class="fas fa-bag-shopping"></i> Shop the Collection</a>
+      <a href="about.html" class="btn btn-outline"><i class="fas fa-hand-sparkles"></i> Our Atelier</a>
+    </div>
+    <div class="hero-badge glass">
+      <i class="fas fa-certificate"></i>
+      <div>
+        <strong style="color: var(--wine);">Certified Handmade</strong>
+        <div style="font-size: 11px; color: var(--taupe);">Karigar-verified · GI-tagged crafts</div>
+      </div>
+    </div>
+    <div class="hero-stats">
+      <div><strong data-count="2016">2016</strong><span>Founded, Paris × Jaipur</span></div>
+      <div><strong data-count="40" data-suffix="+">40+</strong><span>Karigar Partners</span></div>
+      <div><strong data-count="12" data-suffix="k">12k</strong><span>Pieces Hand-Finished</span></div>
+    </div>
+  </div>
+  <div class="hero-visual reveal">
+    <div class="frame" style="border: 1px dashed var(--gold); padding: 18px;">
+      <div class="parallax-wrap">
+        <img data-speed="0.12" src="assets/images/zari_banarasi_saree.jpg?w=1000&q=80&auto=format&fit=crop" alt="Model wearing Maison Éclat couture" style="width: 100%; height: 620px; object-fit: cover;">
+      </div>
+    </div>
+    <div class="seal">ATELIER<br>FINISHED</div>
+    <div class="glass hero-float">
+      <i class="fas fa-circle-notch fa-spin" style="color: var(--wine);"></i>
+      <div>
+        <strong>Batch №42 — Jaipur</strong>
+        <span>Zari finishing · piece 6 of 40</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURE STRIP -->
+<section class="feature-strip">
+  <div class="container">
+    <div class="feature-grid">
+      <div class="feature-item reveal">
+        <i class="fas fa-truck-fast"></i>
+        <h4>Pan-India & Global</h4>
+        <p>Complimentary over $150</p>
+      </div>
+      <div class="feature-item reveal">
+        <i class="fas fa-hand-holding-heart"></i>
+        <h4>Certified Handmade</h4>
+        <p>Karigar-verified pieces</p>
+      </div>
+      <div class="feature-item reveal">
+        <i class="fas fa-rotate-left"></i>
+        <h4>7-Day Easy Returns</h4>
+        <p>No questions asked</p>
+      </div>
+      <div class="feature-item reveal">
+        <i class="fas fa-lock"></i>
+        <h4>Secure Checkout</h4>
+        <p>Cards, UPI & wallets</p>
+      </div>
+      <div class="feature-item reveal">
+        <i class="fas fa-award"></i>
+        <h4>GI-Tagged Crafts</h4>
+        <p>Heritage techniques</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-gem"></i> Shop by Collection</div>
+      <h2 style="font-size: 42px;">Three doors into the atelier</h2>
+      <p>Outerwear that shrugs off a decade, dresses cut on the true bias and dressed in zari, leather goods that arrive stiff and leave soft. Start wherever your hand reaches first.</p>
+    </div>
+    <div class="collections-grid">
+      <a href="products.html?cat=Outerwear" class="collection-card reveal">
+        <img loading="lazy" src="assets/images/001.avif?w=800&q=80&auto=format&fit=crop" alt="Outerwear">
+        <div class="overlay"><span>12 Pieces · Trenches, Blazers, Bandhgala</span><h3>Regal Outerwear</h3></div>
+      </a>
+      <a href="products.html?cat=Dresses" class="collection-card reveal">
+        <img loading="lazy" src="assets/images/002.avif?w=800&q=80&auto=format&fit=crop" alt="Dresses">
+        <div class="overlay"><span>9 Pieces · Bias-Cut Silk & Zari</span><h3>Bridal & Occasion</h3></div>
+      </a>
+      <a href="products.html?cat=Accessories" class="collection-card reveal">
+        <img loading="lazy" src="assets/images/003.avif?w=800&q=80&auto=format&fit=crop" alt="Accessories">
+        <div class="overlay"><span>14 Pieces · Leather, Gold, Pashmina</span><h3>Adornments</h3></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- LOOKBOOK SWIPER -->
+<section class="section" style="background: var(--cream-card); overflow: hidden;">
+  <div class="container">
+    <div class="section-head reveal" style="display: flex; justify-content: space-between; align-items: flex-end; max-width: none;">
+      <div>
+        <div class="eyebrow"><i class="fas fa-camera-retro"></i> The Edit</div>
+        <h2 style="font-size: 38px;">Atelier se aapke ghar tak</h2>
+        <p>Two cities, one standard. A quiet look inside the Jaipur and Paris rooms where your clothes are made.</p>
+      </div>
+      <div style="display: flex; gap: 12px;">
+        <button class="btn btn-outline btn-sm look-prev" aria-label="Previous"><i class="fas fa-arrow-left"></i></button>
+        <button class="btn btn-outline btn-sm look-next" aria-label="Next"><i class="fas fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </div>
+  <div class="container" style="max-width: 100%; padding: 0;">
+    <div class="swiper lookbook-swiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="lookbook-slide">
+            <img loading="lazy" src="assets/images/jaipur_embroidery.jpg?w=900&q=80&auto=format&fit=crop" alt="Jaipur embroidery floor">
+            <div class="lookbook-caption glass">
+              <h3>The Jaipur Embroidery Floor</h3>
+              <span>Zari & resham · 7 a.m.</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="lookbook-slide">
+            <img loading="lazy" src="assets/images/01.avif?w=900&q=80&auto=format&fit=crop" alt="Banarasi silk dye kettles">
+            <div class="lookbook-caption glass">
+              <h3>Dye Kettles at Dawn</h3>
+              <span>Banarasi silk district</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="lookbook-slide">
+            <img loading="lazy" src="assets/images/02.avif?w=900&q=80&auto=format&fit=crop" alt="Hand finishing">
+            <div class="lookbook-caption glass">
+              <h3>Hand & Needle</h3>
+              <span>Six stitches to the inch</span>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="lookbook-slide">
+            <img loading="lazy" src="assets/images/003.avif?w=900&q=80&auto=format&fit=crop" alt="Leather goods">
+            <div class="lookbook-caption glass">
+              <h3>Leather, Worn Soft</h3>
+              <span>Bark-tanned · saddle-stitched</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BESTSELLERS -->
+<section class="section">
+  <div class="container">
+    <div class="section-head reveal" style="display: flex; justify-content: space-between; align-items: flex-end; max-width: none;">
+      <div>
+        <div class="eyebrow"><i class="fas fa-crown"></i> Most Loved</div>
+        <h2 style="font-size: 38px;">Bestsellers this season</h2>
+        <p>The pieces our fitters reach for first — restocked in small numbers, and never rushed back onto the rail.</p>
+      </div>
+      <a href="products.html" class="btn btn-outline btn-sm">View All Products <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="product-grid" id="bestsellerGrid"></div>
+  </div>
+</section>
+
+<!-- FABRIC LIBRARY -->
+<section class="section" style="background: var(--cream-card);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-book-open"></i> The Fabric Library</div>
+      <h2 style="font-size: 42px;">Know your cloth</h2>
+      <p>We buy fibre the slow way — from mills and families we can name across India and France — and we write it into every label so you know exactly what you own.</p>
+    </div>
+    <div class="fabric-grid">
+      <div class="fabric-card reveal">
+        <div class="fabric-icon"><i class="fas fa-feather-pointed"></i></div>
+        <h3>Banarasi Mulberry Silk</h3>
+        <p>Twenty-two momme crepe, woven on looms in Varanasi that run at half the speed of modern mills so the fibre keeps its liquid fall. Kettle-dyed by hand; no two baths are ever quite alike.</p>
+        <span class="badge-soft">Dresses · Blouses</span>
+      </div>
+      <div class="fabric-card reveal">
+        <div class="fabric-icon"><i class="fas fa-snowflake"></i></div>
+        <h3>Kashmiri Pashmina & Merino</h3>
+        <p>Hand-loomed in short runs of forty, brushed with teasel heads and rested for a week before cutting. Built for a decade of winters, not one.</p>
+        <span class="badge-soft">Knitwear · Scarves</span>
+      </div>
+      <div class="fabric-card reveal">
+        <div class="fabric-icon"><i class="fas fa-bag-shopping"></i></div>
+        <h3>Rajasthani Tanned Leather</h3>
+        <p>Vegetable-tanned for forty days, cut from the bend and saddle-stitched at six stitches to the inch. It arrives stiff and leaves soft — that is the point.</p>
+        <span class="badge-soft">Totes · Belts</span>
+      </div>
+      <div class="fabric-card reveal">
+        <div class="fabric-icon"><i class="fas fa-stamp"></i></div>
+        <h3>Jaipur Block-Print</h3>
+        <p>Every coat hides a second garment inside: hand-carved teak blocks, madder and indigo dyes, printed by a family we have worked with since 2019.</p>
+        <span class="badge-soft">Linings · Scarves</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFT SPLIT -->
+<section class="section">
+  <div class="container craft-split">
+    <div class="reveal" style="position: relative;">
+      <div class="frame" style="border: 1px dashed var(--gold); padding: 18px; overflow: hidden;">
+        <div class="parallax-wrap">
+          <img data-speed="-0.08" loading="lazy" src="assets/images/embriodery.avif?w=900&q=80&auto=format&fit=crop" alt="Embroidery hands" style="width: 100%; height: 520px; object-fit: cover;">
+        </div>
+      </div>
+      <div class="glass" style="position: absolute; left: -18px; bottom: 40px; padding: 16px 22px; border-radius: 4px;">
+        <div style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--wine); font-weight: 700;">
+          <i class="fas fa-location-dot"></i> Jaipur · Embroidery Floor
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="eyebrow"><i class="fas fa-hand-sparkles"></i> The Atelier</div>
+      <h2 style="font-size: 38px;">Every seam is a <em>decision</em>, not an accident.</h2>
+      <p style="color: var(--ink-soft); line-height: 1.85; margin-bottom: 18px;">
+        We work with a small circle of ateliers in Paris — and pattern cutters and karigars in Jaipur, where hand-finishing with zari and resham has been a family trade for generations. A coat is cut once, fitted twice, and finished over days, not minutes.
+      </p>
+      <p style="color: var(--ink-soft); line-height: 1.85;">
+        When a run sells through, we do not reprint it; we re-cut it, which is why a restock takes four to six weeks and why the piece you receive is never a warehouse orphan.
+      </p>
+      <div class="craft-stats">
+        <div><strong>100%</strong><span>Hand-Finished Hems</span></div>
+        <div><strong>4-6wk</strong><span>Per Small Batch</span></div>
+        <div><strong>2</strong><span>Cities of Craft</span></div>
+      </div>
+      <a href="about.html" class="btn btn-outline" style="margin-top: 36px;"><i class="fas fa-book-open"></i> Read Our Story</a>
+    </div>
+  </div>
+</section>
+
+<!-- CRAFTSMAN SPOTLIGHT -->
+<section class="section" style="background: var(--cream-card);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-users"></i> Karigar Spotlight</div>
+      <h2 style="font-size: 42px;">The hands behind every hem</h2>
+      <p>Four regions, four crafts, one standard of patience. Meet the karigar families whose work leaves with a signature stitch.</p>
+    </div>
+    <div class="craftsman-grid">
+      <div class="craftsman-card reveal">
+        <div class="craftsman-img">
+          <img loading="lazy" src="assets/images/jaipur.jpg?w=700&q=80&auto=format&fit=crop" alt="Jaipur craftsman">
+        </div>
+        <h4>Jaipur</h4>
+        <div class="location">Zari & Resham</div>
+        <p>Gold-thread embroidery worked freehand on silk, one motif at a time.</p>
+      </div>
+      <div class="craftsman-card reveal">
+        <div class="craftsman-img">
+          <img loading="lazy" src="assets/images/varanasi.jpg?w=700&q=80&auto=format&fit=crop" alt="Varanasi weaver">
+        </div>
+        <h4>Varanasi</h4>
+        <div class="location">Banarasi Handloom</div>
+        <p>Silk woven thread by thread on pit-looms passed down four generations.</p>
+      </div>
+      <div class="craftsman-card reveal">
+        <div class="craftsman-img">
+          <img loading="lazy" src="assets/images/kutch.jpg?w=700&q=80&auto=format&fit=crop" alt="Kutch artisan">
+        </div>
+        <h4>Kutch</h4>
+        <div class="location">Abhla Mirror Work</div>
+        <p>Hand-set mirrors and chain stitch, a Kutchi tradition of light and thread.</p>
+      </div>
+      <div class="craftsman-card reveal">
+        <div class="craftsman-img">
+          <img loading="lazy" src="assets/images/kashmir.avif?w=700&q=80&auto=format&fit=crop" alt="Kashmir weaver">
+        </div>
+        <h4>Kashmir</h4>
+        <div class="location">Pashmina Weave</div>
+        <p>Hand-spun cashmere, loomed in the valley, warm across a lifetime.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE METHOD -->
+<section class="section">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-list-ol"></i> The Éclat Method</div>
+      <h2 style="font-size: 42px;">Four doors before dispatch</h2>
+    </div>
+    <div class="method-timeline">
+      <div class="method-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+        <div class="method-step reveal">
+          <div class="method-number">01</div>
+          <h4>Cut</h4>
+          <p>Patterns are chalked by hand and cut once, single-ply, against the selvedge. Grain is checked twice; haste is checked at the door.</p>
+        </div>
+        <div class="method-step reveal">
+          <div class="method-number">02</div>
+          <h4>Fit</h4>
+          <p>Each style is fitted on three bodies, not one mannequin — standing, sitting, reaching — before a single label is sewn.</p>
+        </div>
+        <div class="method-step reveal">
+          <div class="method-number">03</div>
+          <h4>Finish</h4>
+          <p>Hems fell-stitched by hand, zari worked over silk, every bar-tack sealed. Eleven pairs of hands touch each piece.</p>
+        </div>
+        <div class="method-step reveal">
+          <div class="method-number">04</div>
+          <h4>Seal</h4>
+          <p>Runs of forty or fewer. Your piece carries its number in ink and a wax seal in the inner pocket — a quiet signature.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote-section">
+  <div class="container reveal">
+    <div class="ornament" style="margin-bottom: 40px;">
+      <span></span><i class="fas fa-asterisk"></i><span></span>
+    </div>
+    <blockquote>
+      "Luxury is not the opposite of utility. It is the opposite of disposability."
+    </blockquote>
+    <div class="quote-attribution">— Élodie Marchand, Founder</div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background: var(--cream-card);">
+  <div class="container">
+    <div class="section-head center reveal">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-quote-left"></i> In Their Words</div>
+      <h2 style="font-size: 38px;">From the fitting room</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="testimonial reveal">
+        <p>"The zari trench has survived three winters and still looks freshly pressed. You can feel the difference in the stitching."</p>
+        <div class="who">— Aanya Kapoor, Delhi</div>
+      </div>
+      <div class="testimonial reveal">
+        <p>"First piece I've bought where the fabric photo actually matched what arrived. The wrap dress is even better in person."</p>
+        <div class="who">— Priya Menon, Mumbai</div>
+      </div>
+      <div class="testimonial reveal">
+        <p>"Sizing guide was spot on and the tote only gets better with age. Worth the wait for the small-batch restock."</p>
+        <div class="who">— Rohan Verma, Bengaluru</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <div style="display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 70px; align-items: start;">
+      <div class="reveal">
+        <div class="eyebrow"><i class="fas fa-circle-question"></i> Good to Know</div>
+        <h2 style="font-size: 38px;">Asked at the counter, answered here</h2>
+        <p style="color: var(--ink-soft); line-height: 1.8;">
+          Anything else, write to us at <strong style="color: var(--wine);">bonjour@maisoneclat.com</strong> — a person replies, usually within a day.
+        </p>
+        <a href="contact.html" class="btn btn-outline" style="margin-top: 28px;"><i class="fas fa-envelope"></i> Contact Us</a>
+      </div>
+      <div class="faq reveal">
+        <details open>
+          <summary>Why do small batches take four to six weeks?</summary>
+          <p>Because nothing is pre-cut. Cloth is ordered against your order, cut in a single lay, and finished by hand in sequence. The wait is the quality control.</p>
+        </details>
+        <details>
+          <summary>How do I care for hand-finished pieces?</summary>
+          <p>Rest wool between wears, steam rather than iron silk, and let leather dry away from heat. Every garment ships with a cloth-specific care card written by its finisher.</p>
+        </details>
+        <details>
+          <summary>Do you ship worldwide, and what about duties?</summary>
+          <p>Complimentary shipping over $150, dispatched tracked from Paris and Jaipur. Duties for EU and UK orders are prepaid at checkout; elsewhere they are calculated on delivery.</p>
+        </details>
+        <details>
+          <summary>Do you provide a GST invoice?</summary>
+          <p>Yes — a GST-compliant invoice is generated automatically with every order and emailed on dispatch.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-band">
+  <div class="container">
+    <h2 class="reveal" style="font-size: 38px;">Join the Atelier List</h2>
+    <p class="reveal">One letter a fortnight — first word on small-batch drops, festive edits and the occasional pattern-cutting note. Never more, never sold.</p>
+    <form class="newsletter-form reveal" onsubmit="event.preventDefault(); showToast('Welcome to the Atelier List');">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit"><i class="fas fa-paper-plane"></i> Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">MAISON ÉCLAT</a>
+      <p style="margin-top: 16px; max-width: 280px;">
+        Hand-finished ready-to-wear from ateliers in Paris and karigar partners in Jaipur, Varanasi, Kutch and Kashmir. Founded 2016.
+      </p>
+      <div style="margin-top: 20px; display: flex; gap: 10px;">
+        <span class="badge-soft"><i class="fas fa-certificate"></i> Certified Handmade</span>
+        <span class="badge-soft"><i class="fas fa-award"></i> GI-Tagged Crafts</span>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="products.html?cat=Outerwear">Outerwear</a></li>
+        <li><a href="products.html?cat=Dresses">Dresses</a></li>
+        <li><a href="products.html?cat=Knitwear">Knitwear</a></li>
+        <li><a href="products.html?cat=Accessories">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="cart.html">Your Bag</a></li>
+        <li><a href="about.html">Size Guide</a></li>
+        <li><a href="about.html">Shipping & Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Ateliers</h5>
+      <p>
+        <i class="fas fa-location-dot" style="color: var(--gold);"></i> 12 Rue de Sèvres<br>
+        75006 Paris, France
+      </p>
+      <p style="margin-top: 14px;">
+        <i class="fas fa-location-dot" style="color: var(--gold);"></i> Karigar House, C-Scheme<br>
+        Jaipur 302001, India
+      </p>
+      <p style="margin-top: 14px;">
+        <i class="fas fa-envelope" style="color: var(--gold);"></i> bonjour@maisoneclat.com<br>
+        <i class="fas fa-phone" style="color: var(--gold);"></i> +33 1 42 00 16 16
+      </p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Maison Éclat. All rights reserved.</span>
+    <span>Privacy · Terms · Crafted with care</span>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- CART DRAWER + TOAST -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h4 style="margin: 0; font-size: 20px; font-style: italic;">Your Bag</h4>
+    <button class="icon-btn" id="cartDrawerClose" aria-label="Close"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-foot" id="cartDrawerFoot"></div>
+</aside>
+<div class="toast-box" id="toastBox"></div>
+
+<!-- LOCAL ENGINE -->
+<script src="assets/js/store.js"></script>
+
+<!-- ANIMATIONS -->
+<script>
+(function() {
+  'use strict';
+  
+  var $ = function(s) { return document.querySelector(s); };
+  var $$ = function(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+  
+  // Bestsellers
+  try {
+    var grid = document.getElementById('bestsellerGrid');
+    if (grid && window.PRODUCTS && window.productCardHTML) {
+      var list = PRODUCTS.filter(function(p) { 
+        return /Bestseller|New/.test(p.tag || ''); 
+      }).slice(0, 4);
+      grid.innerHTML = list.map(productCardHTML).join('');
+      if (window.revealOnScroll) revealOnScroll();
+    }
+  } catch(e) { console.warn('bestsellers:', e); }
+  
+  // Scroll handler: frosted header + progress + back-to-top
+  try {
+    var header = $('.site-header');
+    var bar = $('#progressBar');
+    var top = $('#backToTop');
+    var ticking = false;
+    
+    function paint() {
+      var y = window.scrollY || 0;
+      if (header) header.classList.toggle('scrolled', y > 10);
+      if (top) top.classList.toggle('show', y > 600);
+      if (bar) {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      }
+      ticking = false;
+    }
+    
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(paint);
+      }
+    }, { passive: true });
+    
+    paint();
+    
+    if (top) {
+      top.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  } catch(e) {}
+  
+  // Animated counters
+  try {
+    var counters = $$('[data-count]');
+    if (counters.length && 'IntersectionObserver' in window) {
+      var cio = new IntersectionObserver(function(es) {
+        es.forEach(function(en) {
+          if (!en.isIntersecting) return;
+          cio.unobserve(en.target);
+          var el = en.target;
+          var target = +el.getAttribute('data-count');
+          var suf = el.getAttribute('data-suffix') || '';
+          var t0 = performance.now();
+          var dur = 1400;
+          
+          (function tick(t) {
+            var p = Math.min(1, (t - t0) / dur);
+            var e = 1 - Math.pow(1 - p, 3);
+            el.textContent = Math.round(target * e) + suf;
+            if (p < 1) requestAnimationFrame(tick);
+          })(t0);
+        });
+      }, { threshold: 0.6 });
+      
+      counters.forEach(function(el) { cio.observe(el); });
+    }
+  } catch(e) {}
+  
+  // Lookbook Swiper
+  try {
+    if (window.Swiper) {
+      new Swiper('.lookbook-swiper', {
+        slidesPerView: 1.15,
+        centeredSlides: true,
+        spaceBetween: 24,
+        loop: true,
+        speed: 900,
+        pagination: { 
+          el: '.lookbook-swiper .swiper-pagination', 
+          clickable: true 
+        },
+        navigation: { 
+          nextEl: '.look-next', 
+          prevEl: '.look-prev' 
+        },
+        autoplay: { 
+          delay: 4500, 
+          disableOnInteraction: false 
+        },
+        breakpoints: {
+          768: { slidesPerView: 2.15 },
+          1100: { slidesPerView: 3 }
+        }
+      });
+    }
+  } catch(e) {}
+  
+  // GSAP parallax
+  try {
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      
+      $$('[data-speed]').forEach(function(img) {
+        var sp = parseFloat(img.getAttribute('data-speed')) || 0.1;
+        gsap.fromTo(img, 
+          { yPercent: -sp * 50 }, 
+          {
+            yPercent: sp * 50,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          }
+        );
+      });
+    }
+  } catch(e) {}
+  
+  // Preloader
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var pre = document.getElementById('preloader');
+      if (pre) pre.classList.add('done');
+    }, 400);
+  });
+  
+  // Safety net
+  setTimeout(function() {
+    var pre = document.getElementById('preloader');
+    if (pre) pre.classList.add('done');
+  }, 3000);
+  
+})();
+</script>
+</body>
+</html>

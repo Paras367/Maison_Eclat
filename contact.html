@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="Contact Maison Éclat — our New Delhi flagship, Jaipur karigar house and Paris atelier.">
+<title>Contact — Maison Éclat</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<style>
+/* =========================================================
+   CONTACT PAGE — Global premium enhancements
+   ========================================================= */
+:root {
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --glass: rgba(251, 248, 242, 0.72);
+  --glass-brd: rgba(255, 255, 255, 0.65);
+}
+
+h1, h2, h3, h4, h5, .brand { font-weight: 400; }
+::selection { background: var(--wine); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--wine), var(--gold));
+  border-radius: 10px;
+  border: 2px solid var(--ivory);
+}
+
+html { scroll-padding-top: 96px; }
+
+/* ---------- Progress bar ---------- */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  z-index: 300;
+  transition: width 0.1s ease;
+}
+
+/* ---------- Frosted header ---------- */
+.site-header {
+  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+.site-header.scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: 0 2px 20px -8px rgba(27, 26, 23, 0.15);
+}
+
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-brd);
+  color: var(--wine);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.35s ease;
+  z-index: 350;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--wine);
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* ---------- Ornament ---------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--gold);
+  margin: 0 auto;
+}
+.ornament span {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament span:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.ornament i { font-size: 11px; }
+
+/* ---------- Preloader ---------- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--ivory);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pre-brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--wine);
+  letter-spacing: 0.05em;
+}
+.pre-note {
+  margin-top: 20px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* ---------- Page header stats ---------- */
+.touch-stats {
+  display: flex;
+  gap: 46px;
+  justify-content: center;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+.touch-stats div strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 28px;
+  color: var(--wine);
+}
+.touch-stats div span {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* ---------- Contact channel cards ---------- */
+.channel-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+.channel-card {
+  background: var(--glass);
+  backdrop-filter: blur(14px) saturate(1.3);
+  -webkit-backdrop-filter: blur(14px) saturate(1.3);
+  border: 1px solid var(--glass-brd);
+  box-shadow: 0 8px 32px -12px rgba(27, 26, 23, 0.2);
+  padding: 30px 26px;
+  text-align: center;
+  transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+  position: relative;
+  overflow: hidden;
+}
+.channel-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  transform: scaleX(0);
+  transition: transform 0.4s ease;
+}
+.channel-card:hover::before { transform: scaleX(1); }
+.channel-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow);
+  border-color: var(--gold);
+}
+.channel-card .chip {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  margin: 0 auto 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--ivory);
+  border: 1px dashed var(--gold);
+  color: var(--wine);
+  font-size: 18px;
+}
+.channel-card h4 {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.channel-card p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.channel-card .meta {
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.channel-card a.line {
+  display: block;
+  color: var(--wine);
+  font-weight: 600;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.channel-card a.line:hover {
+  color: var(--wine-dark);
+  text-decoration: underline;
+}
+
+@media (max-width: 1100px) { .channel-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px) { .channel-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Main contact grid ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 50px;
+  align-items: start;
+}
+@media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Map tabs ---------- */
+.map-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.map-tabs button {
+  background: transparent;
+  border: 1px solid var(--line);
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border-radius: 30px;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.map-tabs button.active,
+.map-tabs button:hover {
+  background: var(--wine);
+  color: #fff;
+  border-color: var(--wine);
+}
+
+.map-frame {
+  margin-bottom: 14px;
+  box-shadow: var(--shadow);
+}
+.map-frame iframe {
+  transition: opacity 0.4s ease;
+}
+
+.map-note {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+.map-note p {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* ---------- Form polish ---------- */
+#contactForm .form-control {
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+#contactForm .form-control:focus {
+  border-color: var(--wine);
+  box-shadow: 0 0 0 3px rgba(110, 36, 57, 0.12);
+}
+
+/* ---------- Location cards ---------- */
+.loc-card {
+  background: var(--cream-card);
+  border: 1px dashed var(--line);
+  padding: 26px;
+  margin-bottom: 18px;
+  transition: all 0.3s ease;
+  position: relative;
+}
+.loc-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateY(-3px);
+}
+.loc-card .flag {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  font-size: 16px;
+  color: var(--gold);
+}
+.loc-card h4 {
+  font-size: 20px;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.loc-card p {
+  font-size: 13.5px;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.loc-card .hours {
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 10px;
+}
+.loc-card a.dir {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wine);
+  border-bottom: 1px solid var(--gold);
+  padding-bottom: 3px;
+}
+.loc-card a.dir:hover { color: var(--wine-dark); }
+
+/* ---------- Private fitting band ---------- */
+.fitting-band {
+  background: var(--wine);
+  color: var(--ivory);
+  padding: 80px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.fitting-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(216, 195, 156, 0.18) 0%, transparent 60%);
+  pointer-events: none;
+}
+.fitting-band h2 {
+  color: #fff;
+  font-style: italic;
+  font-size: 38px;
+}
+.fitting-band p {
+  color: var(--gold-light);
+  max-width: 560px;
+  margin: 0 auto 30px;
+  line-height: 1.8;
+}
+.fitting-band .btn-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+</style>
+</head>
+<body>
+
+<!-- SCROLL PROGRESS -->
+<div id="progressBar" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div style="text-align: center;">
+    <div class="pre-brand">Maison Éclat</div>
+    <div class="ornament" style="margin-top: 18px;">
+      <span></span><i class="fas fa-asterisk"></i><span></span>
+    </div>
+    <div class="pre-note">
+      <i class="fas fa-circle-notch fa-spin"></i> Preparing the Atelier
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span><i class="fas fa-gem"></i>&nbsp; COMPLIMENTARY SHIPPING OVER $150</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-rotate-left"></i>&nbsp; 7-DAY EASY RETURNS</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+    <span><i class="fas fa-gem"></i>&nbsp; COMPLIMENTARY SHIPPING OVER $150</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-rotate-left"></i>&nbsp; 7-DAY EASY RETURNS</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">MAISON ÉCLAT<small>Atelier Paris × Jaipur · Est. 2016</small></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Collection</a>
+      <a href="about.html">Maison</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="fa fa-search"></i></button>
+      <a href="#" class="icon-btn" id="cartToggle" aria-label="Cart">
+        <i class="fa fa-shopping-bag"></i>
+        <span class="badge-count cart-count">0</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fa fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="search-panel" id="searchPanel">
+    <div class="container">
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search the collection — "trench", "silk", "zari"…">
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="container">
+    <div class="eyebrow"><i class="fas fa-envelope-open-text"></i> We're Here to Help</div>
+    <h1 style="font-size: 46px; font-style: italic;">Let's get in touch</h1>
+    <div class="touch-stats">
+      <div><strong>24h</strong><span>Average Reply Time</span></div>
+      <div><strong>3</strong><span>Languages Spoken</span></div>
+      <div><strong>3</strong><span>Rooms to Visit</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT CHANNELS -->
+<section class="section section-tight">
+  <div class="container">
+    <div class="channel-grid">
+      <div class="channel-card reveal">
+        <div class="chip"><i class="fas fa-envelope"></i></div>
+        <h4>Write to Us</h4>
+        <a class="line" href="mailto:bonjour@maisoneclat.com">bonjour@maisoneclat.com</a>
+        <a class="line" href="mailto:care@maisoneclat.in">care@maisoneclat.in</a>
+        <div class="meta" style="margin-top: 10px;">Replies within 24 hours</div>
+      </div>
+      <div class="channel-card reveal" style="transition-delay: 0.08s">
+        <div class="chip"><i class="fas fa-phone"></i></div>
+        <h4>Call the Atelier</h4>
+        <a class="line" href="tel:+911140002016">+91 11 4000 2016 · New Delhi</a>
+        <a class="line" href="tel:+33142001616">+33 1 42 00 16 16 · Paris</a>
+        <div class="meta" style="margin-top: 10px;">10:00–20:00 IST · 11:00–19:00 CET</div>
+      </div>
+      <div class="channel-card reveal" style="transition-delay: 0.16s">
+        <div class="chip"><i class="fas fa-calendar-check"></i></div>
+        <h4>Private Fittings</h4>
+        <p>New Delhi flagship & Paris atelier, by appointment only.</p>
+        <a class="line" href="#fitting">Request an Appointment</a>
+        <div class="meta" style="margin-top: 10px;">45-minute sessions</div>
+      </div>
+      <div class="channel-card reveal" style="transition-delay: 0.24s">
+        <div class="chip"><i class="fas fa-headset"></i></div>
+        <h4>Concierge Desk</h4>
+        <p>Order updates, fabric advice, sizing questions — we're here.</p>
+        <a class="line" href="#form">Send a Message</a>
+        <div class="meta" style="margin-top: 10px;">7 days a week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="stitch-rule"></div></div>
+
+<!-- MAP + FORM / LOCATIONS + FAQ -->
+<section class="section">
+  <div class="container contact-grid">
+
+    <!-- LEFT: MAP + FORM -->
+    <div class="reveal">
+      <div class="map-tabs" role="tablist">
+        <button class="active" data-map="delhi"><i class="fas fa-location-dot"></i> New Delhi Flagship</button>
+        <button data-map="paris"><i class="fas fa-location-dot"></i> Paris Atelier</button>
+        <button data-map="jaipur"><i class="fas fa-location-dot"></i> Jaipur Karigar House</button>
+      </div>
+
+      <div class="map-frame">
+        <iframe id="mapDelhi" src="https://maps.google.com/maps?q=DLF%20Emporio%2C%20Vasant%20Kunj%2C%20New%20Delhi%2C%20India&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" title="Maison Éclat New Delhi Flagship"></iframe>
+        <iframe id="mapParis" src="https://maps.google.com/maps?q=12+Rue+de+S%C3%A8vres%2C+Paris%2C+France&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" title="Maison Éclat Paris Atelier" style="display: none;"></iframe>
+        <iframe id="mapJaipur" src="https://maps.google.com/maps?q=C-Scheme%2C%20Jaipur%2C%20India&t=&z=15&ie=UTF8&iwloc=&output=embed" allowfullscreen loading="lazy" title="Maison Éclat Jaipur Karigar House" style="display: none;"></iframe>
+      </div>
+
+      <div class="map-note">
+        <p id="mapAddress"><i class="fas fa-location-dot" style="color: var(--gold);"></i>&nbsp; 1st Floor, The Emporio, Vasant Kunj, New Delhi 110070, India</p>
+        <a id="mapDirections" class="btn btn-outline btn-sm" href="https://maps.google.com/?q=DLF+Emporio,+Vasant+Kunj,+New+Delhi" target="_blank" rel="noopener"><i class="fas fa-diamond-turn-right"></i> Get Directions</a>
+      </div>
+
+      <h3 style="font-size: 26px; font-style: italic; margin-bottom: 6px;" id="form">Send us a message</h3>
+      <p style="font-size: 13px; color: var(--taupe); margin-bottom: 24px;">A person replies, never a bot.</p>
+
+      <form id="contactForm" onsubmit="event.preventDefault(); this.reset(); showToast('Thank you — we will reply within 1 business day');">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Full Name</label>
+            <input class="form-control" required placeholder="e.g. Aanya Kapoor">
+          </div>
+          <div class="form-group">
+            <label>Email Address</label>
+            <input type="email" class="form-control" required placeholder="you@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone <span style="color: var(--taupe); text-transform: none; letter-spacing: 0;">(optional)</span></label>
+            <input type="tel" class="form-control" placeholder="+91 …">
+          </div>
+          <div class="form-group">
+            <label>Subject</label>
+            <select class="form-control" required>
+              <option value="">Choose a subject…</option>
+              <option>Order & Shipping</option>
+              <option>Private Fitting Appointment</option>
+              <option>Fabric & Care Advice</option>
+              <option>Returns & Exchanges</option>
+              <option>Press & Partnerships</option>
+              <option>Something Else</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Order № <span style="color: var(--taupe); text-transform: none; letter-spacing: 0;">(if applicable)</span></label>
+          <input class="form-control" placeholder="ME-102938">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea class="form-control" rows="6" required placeholder="Tell us how we can help…"></textarea>
+        </div>
+        <button type="submit" class="btn btn-gold"><i class="fas fa-paper-plane"></i> Send Message</button>
+      </form>
+    </div>
+
+    <!-- RIGHT: LOCATIONS + FAQ -->
+    <div class="reveal" style="transition-delay: 0.1s">
+      <h4 style="font-size: 22px; font-style: italic; margin-bottom: 16px;">
+        <i class="fas fa-spa" style="color: var(--gold);"></i> Our Rooms
+      </h4>
+
+      <div class="loc-card">
+        <div class="flag"><i class="fas fa-crown"></i></div>
+        <h4>New Delhi Flagship</h4>
+        <p>1st Floor, The Emporio, Vasant Kunj<br>New Delhi 110070, India</p>
+        <div class="hours">Mon–Sun · 11:00–20:00 IST</div>
+        <a class="dir" href="https://maps.google.com/?q=DLF+Emporio,+Vasant+Kunj,+New+Delhi" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+
+      <div class="loc-card">
+        <div class="flag"><i class="fas fa-hand-sparkles"></i></div>
+        <h4>Jaipur Karigar House</h4>
+        <p>Karigar House, C-Scheme<br>Jaipur 302001, India</p>
+        <div class="hours">Visits by appointment · Mon–Fri 10:00–18:00 IST</div>
+        <a class="dir" href="https://maps.google.com/?q=C-Scheme,+Jaipur,+India" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+
+      <div class="loc-card">
+        <div class="flag"><i class="fas fa-tower-observation"></i></div>
+        <h4>Paris Atelier</h4>
+        <p>12 Rue de Sèvres<br>75006 Paris, France</p>
+        <div class="hours">Tue–Sat · 11:00–19:00 CET</div>
+        <a class="dir" href="https://maps.google.com/?q=12+Rue+de+Sèvres,+Paris" target="_blank" rel="noopener">Get Directions</a>
+      </div>
+
+      <div class="summary-box" style="margin: 26px 0 30px;">
+        <h4 style="font-size: 20px; font-style: italic; margin-bottom: 10px;">Concierge Desk</h4>
+        <p style="color: var(--ink-soft); line-height: 1.9; font-size: 14px;">
+          <i class="fas fa-envelope" style="color: var(--gold);"></i> care@maisoneclat.in<br>
+          <i class="fas fa-phone" style="color: var(--gold);"></i> +91 11 4000 2016<br>
+          <i class="fas fa-clock" style="color: var(--gold);"></i> 7 days a week, 10:00–20:00 IST
+        </p>
+      </div>
+
+      <h4 style="font-size: 22px; font-style: italic; margin-bottom: 10px;">Frequently Asked</h4>
+      <div class="faq">
+        <details open>
+          <summary>How long does hand-finishing take?</summary>
+          <p>Most pieces are made in numbered runs of 40 or fewer; restocks typically follow within 4–6 weeks because nothing is pre-cut.</p>
+        </details>
+        <details>
+          <summary>Do you ship internationally?</summary>
+          <p>Yes — worldwide from New Delhi and Paris, with complimentary shipping over $150 and duties calculated at checkout where applicable.</p>
+        </details>
+        <details>
+          <summary>What's your returns policy?</summary>
+          <p>Unworn, tagged pieces may be returned within 7 days of delivery in India (30 days internationally) for a full refund.</p>
+        </details>
+        <details>
+          <summary>Is Cash on Delivery available?</summary>
+          <p>Yes, on select pincodes across India. Prepaid orders unlock complimentary shipping and priority dispatch.</p>
+        </details>
+        <details>
+          <summary>Can I book a private fitting?</summary>
+          <p>Absolutely — 45-minute sessions at the New Delhi flagship or Paris atelier. Email ahead and we'll reserve a room.</p>
+        </details>
+        <details>
+          <summary>Do you provide a GST invoice?</summary>
+          <p>Yes — a GST-compliant invoice is generated automatically with every Indian order and emailed on dispatch.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVATE FITTING BAND -->
+<section class="fitting-band" id="fitting">
+  <div class="container reveal">
+    <div class="ornament" style="margin-bottom: 26px; color: var(--gold-light);">
+      <span></span><i class="fas fa-asterisk"></i><span></span>
+    </div>
+    <h2>Book a Private Fitting</h2>
+    <p>A fitting at your pace. Forty-five unhurried minutes with a fitter, the season's pieces laid out, and honest advice on cut, cloth and care.</p>
+    <div class="btn-row">
+      <a href="mailto:bonjour@maisoneclat.com?subject=Private%20Fitting%20Appointment" class="btn btn-gold" style="background: var(--gold); border-color: var(--gold); color: var(--ink);">
+        <i class="fas fa-calendar-check"></i> Request an Appointment
+      </a>
+      <a href="tel:+911140002016" class="btn btn-outline-light">
+        <i class="fas fa-phone"></i> Call the Concierge
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">MAISON ÉCLAT</a>
+      <p style="margin-top: 16px; max-width: 280px;">
+        Hand-finished ready-to-wear from ateliers in Paris and karigar partners in Jaipur, Varanasi, Kutch and Kashmir. Founded 2016.
+      </p>
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <span class="badge-soft"><i class="fas fa-certificate"></i> Certified Handmade</span>
+        <span class="badge-soft"><i class="fas fa-award"></i> GI-Tagged Crafts</span>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="products.html?cat=Outerwear">Outerwear</a></li>
+        <li><a href="products.html?cat=Dresses">Dresses</a></li>
+        <li><a href="products.html?cat=Knitwear">Knitwear</a></li>
+        <li><a href="products.html?cat=Accessories">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="cart.html">Your Bag</a></li>
+        <li><a href="about.html">Size Guide</a></li>
+        <li><a href="about.html">Shipping & Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Ateliers</h5>
+      <p><i class="fas fa-location-dot" style="color: var(--gold);"></i> The Emporio, Vasant Kunj<br>New Delhi 110070, India</p>
+      <p style="margin-top: 10px;"><i class="fas fa-location-dot" style="color: var(--gold);"></i> Karigar House, C-Scheme<br>Jaipur 302001, India</p>
+      <p style="margin-top: 10px;"><i class="fas fa-location-dot" style="color: var(--gold);"></i> 12 Rue de Sèvres<br>75006 Paris, France</p>
+      <p style="margin-top: 10px;">
+        bonjour@maisoneclat.com<br>
+        +91 11 4000 2016
+      </p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Maison Éclat. All rights reserved.</span>
+    <span>Privacy · Terms · Crafted with care</span>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- CART DRAWER + TOAST -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h4 style="margin: 0; font-size: 20px; font-style: italic;">Your Bag</h4>
+    <button class="icon-btn" id="cartDrawerClose" aria-label="Close"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-foot" id="cartDrawerFoot"></div>
+</aside>
+<div class="toast-box" id="toastBox"></div>
+
+<script src="assets/js/store.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  var $ = function(s) { return document.querySelector(s); };
+
+  // Frosted header + progress + back-to-top
+  try {
+    var header = $('.site-header');
+    var bar = $('#progressBar');
+    var top = $('#backToTop');
+    var ticking = false;
+
+    function paint() {
+      var y = window.scrollY || 0;
+      if (header) header.classList.toggle('scrolled', y > 10);
+      if (top) top.classList.toggle('show', y > 500);
+      if (bar) {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(paint);
+      }
+    }, { passive: true });
+
+    paint();
+
+    if (top) {
+      top.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  } catch(e) {}
+
+  // Map tabs
+  try {
+    var tabs = document.querySelectorAll('.map-tabs button');
+    var mapDelhi = $('#mapDelhi');
+    var mapParis = $('#mapParis');
+    var mapJaipur = $('#mapJaipur');
+    var addr = $('#mapAddress');
+    var dir = $('#mapDirections');
+
+    var places = {
+      delhi: {
+        text: '1st Floor, The Emporio, Vasant Kunj, New Delhi 110070, India',
+        link: 'https://maps.google.com/?q=DLF+Emporio,+Vasant+Kunj,+New+Delhi'
+      },
+      paris: {
+        text: '12 Rue de Sèvres, 75006 Paris, France',
+        link: 'https://maps.google.com/?q=12+Rue+de+Sèvres,+Paris'
+      },
+      jaipur: {
+        text: 'Karigar House, C-Scheme, Jaipur 302001, India',
+        link: 'https://maps.google.com/?q=C-Scheme,+Jaipur,+India'
+      }
+    };
+
+    tabs.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        tabs.forEach(function(b) { b.classList.remove('active'); });
+        btn.classList.add('active');
+        var k = btn.getAttribute('data-map');
+
+        if (mapDelhi) mapDelhi.style.display = (k === 'delhi') ? 'block' : 'none';
+        if (mapParis) mapParis.style.display = (k === 'paris') ? 'block' : 'none';
+        if (mapJaipur) mapJaipur.style.display = (k === 'jaipur') ? 'block' : 'none';
+
+        if (addr) addr.innerHTML = '<i class="fas fa-location-dot" style="color: var(--gold);"></i>&nbsp; ' + places[k].text;
+        if (dir) dir.href = places[k].link;
+      });
+    });
+  } catch(e) {}
+
+})();
+</script>
+</body>
+</html>

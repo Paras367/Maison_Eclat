@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="The Maison Éclat story — a house built on patience, from ateliers in Paris and Jaipur.">
+<title>The Maison — Maison Éclat</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="assets/css/style.css">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+<style>
+/* =========================================================
+   MAISON — Editorial "About" page
+   International luxury aesthetic
+   ========================================================= */
+:root {
+  --font-display: 'Instrument Serif', serif;
+  --font-body: 'Inter', sans-serif;
+  --glass: rgba(251, 248, 242, 0.72);
+  --glass-brd: rgba(255, 255, 255, 0.65);
+}
+
+h1, h2, h3, h4, h5, .brand { font-weight: 400; }
+::selection { background: var(--wine); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--ivory); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--wine), var(--gold));
+  border-radius: 10px;
+  border: 2px solid var(--ivory);
+}
+
+html { scroll-padding-top: 96px; }
+
+/* ---------- Progress bar ---------- */
+#progressBar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  z-index: 300;
+  transition: width 0.1s ease;
+}
+
+/* ---------- Frosted header ---------- */
+.site-header {
+  transition: background 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+.site-header.scrolled {
+  background: var(--glass);
+  backdrop-filter: blur(18px) saturate(1.3);
+  -webkit-backdrop-filter: blur(18px) saturate(1.3);
+  box-shadow: 0 2px 20px -8px rgba(27, 26, 23, 0.15);
+}
+
+/* ---------- Back to top ---------- */
+.back-to-top {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-brd);
+  color: var(--wine);
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.35s ease;
+  z-index: 350;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+}
+.back-to-top.show {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+.back-to-top:hover {
+  background: var(--wine);
+  color: #fff;
+  transform: translateY(-4px);
+}
+
+/* ---------- Ornament ---------- */
+.ornament {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--gold);
+  margin: 0 auto;
+}
+.ornament span {
+  width: 90px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+.ornament span:last-child {
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+.ornament i { font-size: 11px; }
+
+/* ---------- Preloader ---------- */
+#preloader {
+  position: fixed;
+  inset: 0;
+  background: var(--ivory);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+#preloader.done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.pre-brand {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 36px;
+  color: var(--wine);
+  letter-spacing: 0.05em;
+}
+.pre-note {
+  margin-top: 20px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* =========================================================
+   HERO — Editorial masthead
+   ========================================================= */
+.maison-hero {
+  position: relative;
+  padding: 120px 0 80px;
+  overflow: hidden;
+  text-align: center;
+  border-bottom: 1px solid var(--line);
+}
+.maison-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 30%, rgba(176, 141, 87, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+.maison-hero .kicker {
+  font-size: 11px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--wine);
+  font-weight: 700;
+  margin-bottom: 30px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+}
+.maison-hero .kicker::before,
+.maison-hero .kicker::after {
+  content: '';
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+}
+.maison-hero h1 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(48px, 8vw, 104px);
+  line-height: 0.98;
+  margin: 0 0 30px;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+}
+.maison-hero h1 em {
+  color: var(--wine);
+  font-style: italic;
+  position: relative;
+}
+.maison-hero .lead {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+.maison-hero .meta-row {
+  display: flex;
+  justify-content: center;
+  gap: 46px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.maison-hero .meta-row span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.maison-hero .meta-row i { color: var(--gold); }
+
+/* =========================================================
+   OPENING SPLIT — Editorial two-column
+   ========================================================= */
+.opening-split {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items: center;
+}
+@media (max-width: 900px) {
+  .opening-split { grid-template-columns: 1fr; gap: 40px; }
+}
+.opening-split .visual {
+  position: relative;
+}
+.opening-split .visual img {
+  width: 100%;
+  height: 620px;
+  object-fit: cover;
+}
+.opening-split .visual::before {
+  content: '';
+  position: absolute;
+  inset: -18px;
+  border: 1px dashed var(--gold);
+  z-index: -1;
+  pointer-events: none;
+}
+.opening-split .caption {
+  position: absolute;
+  bottom: -30px;
+  left: 30px;
+  background: var(--ink);
+  color: var(--ivory);
+  padding: 18px 24px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  max-width: 240px;
+  line-height: 1.6;
+}
+.opening-split .caption strong {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--gold-light);
+  margin-bottom: 4px;
+}
+
+.opening-copy .eyebrow-italic {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--wine);
+  letter-spacing: 0;
+  text-transform: none;
+  margin-bottom: 14px;
+  display: block;
+}
+.opening-copy h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(32px, 4vw, 48px);
+  line-height: 1.15;
+  margin-bottom: 28px;
+}
+.opening-copy p {
+  font-size: 16px;
+  line-height: 1.9;
+  color: var(--ink-soft);
+  margin-bottom: 20px;
+}
+.opening-copy .signature {
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.opening-copy .signature img {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px dashed var(--gold);
+}
+.opening-copy .signature strong {
+  display: block;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 20px;
+  margin-bottom: 2px;
+}
+.opening-copy .signature span {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+
+/* =========================================================
+   EDITORIAL PULL QUOTE
+   ========================================================= */
+.pull-quote {
+  padding: 140px 0;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.pull-quote::before {
+  content: '"';
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-size: 340px;
+  color: var(--gold);
+  opacity: 0.08;
+  line-height: 1;
+  pointer-events: none;
+}
+.pull-quote blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(28px, 4vw, 52px);
+  line-height: 1.3;
+  max-width: 960px;
+  margin: 0 auto;
+  color: var(--ink);
+  position: relative;
+  z-index: 1;
+  padding: 0 20px;
+}
+.pull-quote blockquote em {
+  color: var(--wine);
+  font-style: italic;
+}
+.pull-quote .attribution {
+  margin-top: 40px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--taupe);
+}
+.pull-quote .attribution strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* =========================================================
+   TIMELINE — A decade in thread
+   ========================================================= */
+.timeline-section {
+  padding: 120px 0;
+  background: var(--cream-card);
+  position: relative;
+  overflow: hidden;
+}
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 60px auto 0;
+  padding-left: 60px;
+}
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: repeating-linear-gradient(180deg, var(--gold) 0 8px, transparent 8px 16px);
+}
+.timeline-item {
+  position: relative;
+  padding-bottom: 50px;
+}
+.timeline-item:last-child { padding-bottom: 0; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -46px;
+  top: 6px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ivory);
+  border: 2px solid var(--wine);
+}
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: -41px;
+  top: 11px;
+  width: 2px;
+  height: 2px;
+  background: var(--wine);
+  border-radius: 50%;
+}
+.timeline-year {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 32px;
+  color: var(--wine);
+  margin-bottom: 6px;
+}
+.timeline-item h4 {
+  font-size: 19px;
+  font-style: italic;
+  margin-bottom: 8px;
+}
+.timeline-item p {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  max-width: 640px;
+}
+.timeline-location {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-top: 10px;
+  font-weight: 600;
+}
+
+/* =========================================================
+   MANIFESTO — Three commitments
+   ========================================================= */
+.manifesto-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  margin-top: 50px;
+}
+.manifesto-card {
+  padding: 46px 36px;
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  position: relative;
+  transition: all 0.4s ease;
+}
+.manifesto-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--wine), var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+.manifesto-card:hover::before { transform: scaleX(1); }
+.manifesto-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+  transform: translateY(-4px);
+}
+.manifesto-card .num {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 42px;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 20px;
+  display: block;
+}
+.manifesto-card h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 24px;
+  margin-bottom: 16px;
+  line-height: 1.2;
+}
+.manifesto-card p {
+  font-size: 14.5px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+@media (max-width: 900px) {
+  .manifesto-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   THE PEOPLE — Editorial team grid
+   ========================================================= */
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+.team-member {
+  text-align: center;
+  position: relative;
+}
+.team-member .photo-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 24px;
+  aspect-ratio: 4/5;
+  background: var(--cream-card);
+}
+.team-member .photo-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease, filter 0.5s ease;
+  filter: grayscale(30%) sepia(10%);
+}
+.team-member:hover .photo-wrap img {
+  transform: scale(1.04);
+  filter: grayscale(0%) sepia(0%);
+}
+.team-member .photo-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 12px;
+  border: 1px dashed var(--gold);
+  pointer-events: none;
+  opacity: 0.6;
+}
+.team-member .initials {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--wine);
+  background: var(--ivory);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  border: 1px solid var(--line);
+}
+.team-member h4 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.team-member .role {
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--wine);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+.team-member p {
+  font-size: 13px;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  padding: 0 10px;
+}
+.team-member .social-mini {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.team-member .social-mini a {
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--ink-soft);
+  font-size: 12px;
+  transition: all 0.25s ease;
+}
+.team-member .social-mini a:hover {
+  background: var(--wine);
+  color: #fff;
+  border-color: var(--wine);
+}
+@media (max-width: 1000px) {
+  .team-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px) {
+  .team-grid { grid-template-columns: 1fr; max-width: 400px; margin-left: auto; margin-right: auto; }
+}
+
+/* =========================================================
+   ATELIERS — Two-city split
+   ========================================================= */
+.ateliers-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 30px;
+  margin-top: 60px;
+}
+.atelier-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  transition: all 0.4s ease;
+}
+.atelier-card:hover {
+  border-color: var(--gold);
+  box-shadow: var(--shadow);
+}
+.atelier-card .atelier-img {
+  height: 360px;
+  overflow: hidden;
+  position: relative;
+}
+.atelier-card .atelier-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s ease;
+}
+.atelier-card:hover .atelier-img img { transform: scale(1.05); }
+.atelier-card .atelier-city {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: var(--ivory);
+  padding: 10px 18px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--wine);
+  font-weight: 700;
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.atelier-card .atelier-city i { color: var(--gold); }
+.atelier-card .atelier-body {
+  padding: 34px 30px;
+}
+.atelier-card h3 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+.atelier-card .atelier-subtitle {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  margin-bottom: 18px;
+}
+.atelier-card p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin-bottom: 18px;
+}
+.atelier-card .address {
+  padding-top: 18px;
+  border-top: 1px dashed var(--gold);
+  font-size: 13px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+.atelier-card .address i { color: var(--gold); margin-right: 8px; }
+@media (max-width: 900px) {
+  .ateliers-split { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   AS SEEN IN — Press
+   ========================================================= */
+.press-strip {
+  padding: 80px 0;
+  background: var(--ink);
+  color: var(--ivory);
+  text-align: center;
+}
+.press-strip .press-kicker {
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 40px;
+}
+.press-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 70px;
+  flex-wrap: wrap;
+  opacity: 0.85;
+}
+.press-logos .logo {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 30px;
+  color: var(--ivory);
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+.press-logos .logo:hover {
+  color: var(--gold-light);
+  transform: translateY(-2px);
+}
+.press-logos .logo.sans {
+  font-family: var(--font-body);
+  font-style: normal;
+  font-size: 16px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.press-logos .logo.serif-cap {
+  font-family: var(--font-display);
+  font-style: normal;
+  font-size: 24px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+/* =========================================================
+   NUMBERS — Big editorial stats
+   ========================================================= */
+.numbers-section {
+  padding: 120px 0;
+}
+.numbers-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 50px;
+  text-align: center;
+  margin-top: 60px;
+  padding-top: 60px;
+  border-top: 1px solid var(--line);
+}
+.number-block .big {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(48px, 6vw, 80px);
+  color: var(--wine);
+  line-height: 1;
+  margin-bottom: 12px;
+  display: block;
+}
+.number-block .label {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--taupe);
+  font-weight: 600;
+}
+@media (max-width: 900px) {
+  .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .numbers-grid { grid-template-columns: 1fr; }
+}
+
+/* =========================================================
+   FINAL QUOTE — Wine band
+   ========================================================= */
+.final-quote {
+  padding: 140px 20px;
+  text-align: center;
+  background: var(--wine);
+  color: var(--ivory);
+  position: relative;
+  overflow: hidden;
+}
+.final-quote::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, rgba(216, 195, 156, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+.final-quote blockquote {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(26px, 3.8vw, 44px);
+  line-height: 1.35;
+  max-width: 880px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  color: #fff;
+}
+.final-quote .seal-mark {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 40px;
+  background: var(--ink);
+  border: 1px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-light);
+  font-size: 24px;
+  position: relative;
+  z-index: 1;
+}
+.final-quote .who {
+  margin-top: 34px;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  position: relative;
+  z-index: 1;
+}
+
+/* =========================================================
+   MISC
+   ========================================================= */
+.section-head-italic h2 {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(32px, 4vw, 46px);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+.section-head-italic p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  max-width: 560px;
+}
+.section-head-italic.center p { margin-left: auto; margin-right: auto; }
+
+</style>
+</head>
+<body>
+
+<!-- PROGRESS -->
+<div id="progressBar" aria-hidden="true"></div>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <div style="text-align: center;">
+    <div class="pre-brand">Maison Éclat</div>
+    <div class="ornament" style="margin-top: 18px;">
+      <span></span><i class="fas fa-asterisk"></i><span></span>
+    </div>
+    <div class="pre-note">
+      <i class="fas fa-circle-notch fa-spin"></i> Preparing the Maison
+    </div>
+  </div>
+</div>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span><i class="fas fa-gem"></i>&nbsp; ESTABLISHED PARIS, 2016</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-map-pin"></i>&nbsp; PARIS · JAIPUR</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+    <span><i class="fas fa-gem"></i>&nbsp; ESTABLISHED PARIS, 2016</span>
+    <span><i class="fas fa-hand-sparkles"></i>&nbsp; HAND-FINISHED IN SMALL ATELIERS</span>
+    <span><i class="fas fa-map-pin"></i>&nbsp; PARIS · JAIPUR</span>
+    <span><i class="fas fa-stamp"></i>&nbsp; NUMBERED RUNS OF 40 OR FEWER</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav">
+    <a href="index.html" class="brand">MAISON ÉCLAT<small>Atelier Paris × Jaipur · Est. 2016</small></a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="products.html">Collection</a>
+      <a href="about.html" class="active">Maison</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" id="searchToggle" aria-label="Search"><i class="fa fa-search"></i></button>
+      <a href="#" class="icon-btn" id="cartToggle" aria-label="Cart">
+        <i class="fa fa-shopping-bag"></i>
+        <span class="badge-count cart-count">0</span>
+      </a>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fa fa-bars"></i></button>
+    </div>
+  </div>
+  <div class="search-panel" id="searchPanel">
+    <div class="container">
+      <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search the collection — "trench", "silk", "zari"…">
+        <button class="btn btn-primary btn-sm" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="maison-hero">
+  <div class="container">
+    <div class="kicker reveal">Chapter One — The Maison</div>
+    <h1 class="reveal">A house built<br>on <em>patience</em>.</h1>
+    <p class="lead reveal">
+      Maison Éclat is a small, independent couture house working between two cities — Paris and Jaipur. We make clothes the slow way, because we have never found a faster one that produced something worth keeping.
+    </p>
+    <div class="meta-row reveal">
+      <span><i class="fas fa-calendar"></i> Est. 2016</span>
+      <span><i class="fas fa-map-marker-alt"></i> Paris × Jaipur</span>
+      <span><i class="fas fa-users"></i> 40+ Artisan Partners</span>
+      <span><i class="fas fa-globe"></i> Shipping Worldwide</span>
+    </div>
+  </div>
+</section>
+
+<!-- OPENING SPLIT — Editorial story -->
+<section class="section">
+  <div class="container opening-split">
+    <div class="visual reveal">
+      <img src="https://images.unsplash.com/photo-1441984904996-e0b6ba687e04?w=900&q=80&auto=format&fit=crop" alt="Founder in the Paris atelier">
+      <div class="caption">
+        <strong>Courtyard Studio</strong>
+        6th arrondissement, Paris — where the house began
+      </div>
+    </div>
+    <div class="opening-copy reveal">
+      <span class="eyebrow-italic">Since 2016 — A quiet beginning</span>
+      <h2>Who we are, and why we are slow on purpose.</h2>
+      <p>Maison Éclat began as a single rack of coats in a Paris courtyard studio — twelve pieces, each finished by one pair of hands. A decade on, we are still small by choice. Every piece is pattern-cut, sewn and finished by hand before it ever reaches a shelf, which means we make fewer clothes, not more.</p>
+      <p>Our Paris atelier sits in the 6th arrondissement, working alongside long-standing craft partners in Jaipur for embroidery and leatherwork. It is a quiet collaboration between two cities that take handwork equally seriously — and a refusal to treat any garment as disposable.</p>
+      <div class="signature">
+        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&q=80&auto=format&fit=crop" alt="Camille Rousseau">
+        <div>
+          <strong>Camille Rousseau</strong>
+          <span>Founder &amp; Creative Director</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDITORIAL PULL QUOTE -->
+<section class="pull-quote">
+  <div class="container">
+    <blockquote class="reveal">
+      "We do not design for a season. We design for the woman who will still reach for the coat <em>ten winters from now</em> — and expect it to look better than the day she bought it."
+    </blockquote>
+    <div class="attribution reveal">
+      <strong>Camille Rousseau</strong>
+      Founder, Maison Éclat
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-head-italic center reveal" style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-hourglass-half"></i> A Decade in Thread</div>
+      <h2 style="font-family: var(--font-display); font-style: italic; font-size: clamp(32px, 4vw, 46px); line-height: 1.15;">Ten years, told slowly.</h2>
+      <p style="margin: 16px auto 0; max-width: 560px;">Every chapter of the house, from a single rack to two cities of craft.</p>
+    </div>
+
+    <div class="timeline">
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2016</div>
+        <h4>A courtyard, twelve coats</h4>
+        <p>Camille Rousseau opens a small studio in the 6th arrondissement of Paris. The first collection — twelve hand-finished coats — sells out in nine days through word of mouth alone.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Paris, France</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2018</div>
+        <h4>The Jaipur partnership</h4>
+        <p>A first meeting in Jaipur with a family of embroiderers leads to a long-term collaboration. Zari and resham work begins to appear in the collections, always by hand, always signed by the karigar.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Jaipur, India</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2020</div>
+        <h4>Numbered runs begin</h4>
+        <p>The house commits to small batches — forty pieces or fewer per style. Each piece is hand-numbered and wax-sealed in the inner pocket. Nothing is reprinted; when a run sells, it is re-cut.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Paris × Jaipur</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2022</div>
+        <h4>The Fabric Library opens</h4>
+        <p>Every fibre is traced and labelled — Banarasi mulberry silk, Kashmiri pashmina, Rajasthani vegetable-tanned leather. Customers receive a card detailing the origin of every cloth.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Maison Atelier</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">2024</div>
+        <h4>Karigar Spotlight programme</h4>
+        <p>Quarterly profiles of the artisan families behind each collection — Jaipur, Varanasi, Kutch, Kashmir — published in full with names, stories and signatures.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Across India</div>
+      </div>
+      <div class="timeline-item reveal">
+        <div class="timeline-year">Today</div>
+        <h4>Still small. Still slow.</h4>
+        <p>Forty artisan partners, two ateliers, one uncompromising standard. We remain independent, privately held, and committed to making clothes that outlast the season they were bought in.</p>
+        <div class="timeline-location"><i class="fas fa-map-pin"></i> Worldwide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MANIFESTO — Three commitments -->
+<section class="section">
+  <div class="container">
+    <div class="section-head-italic center reveal" style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-feather-pointed"></i> Our Manifesto</div>
+      <h2 style="font-family: var(--font-display); font-style: italic; font-size: clamp(32px, 4vw, 46px); line-height: 1.15;">Three commitments,<br>no exceptions.</h2>
+      <p style="margin: 16px auto 0; max-width: 600px;">The principles we have never bent, and do not intend to.</p>
+    </div>
+
+    <div class="manifesto-grid">
+      <div class="manifesto-card reveal">
+        <span class="num">01</span>
+        <h3>Hand-Finished, Always</h3>
+        <p>Every garment is finished by a named artisan whose hands you could shake — not a production line. Their signature is sewn inside, and their story is published in our Karigar Spotlight.</p>
+      </div>
+      <div class="manifesto-card reveal">
+        <span class="num">02</span>
+        <h3>Made to Sell Out, Not Discount</h3>
+        <p>We hold runs small enough to sell through fully, so nothing hand-finished ends up in landfill. A wait of four to six weeks for a restock is the price of integrity — and we pay it gladly.</p>
+      </div>
+      <div class="manifesto-card reveal">
+        <span class="num">03</span>
+        <h3>Sourced, Not Just Sold</h3>
+        <p>Fabric mills, dyers, tanners and embroiderers are visited in person before we sign a single order. We can tell you the name of the family who wove your silk, and we often do.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE PEOPLE -->
+<section class="section" style="background: var(--cream-card);">
+  <div class="container">
+    <div class="section-head-italic center reveal" style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-users"></i> The People</div>
+      <h2 style="font-family: var(--font-display); font-style: italic; font-size: clamp(32px, 4vw, 46px); line-height: 1.15;">Meet the Maison</h2>
+      <p style="margin: 16px auto 0; max-width: 600px;">A small team across two cities, united by a single standard.</p>
+    </div>
+
+    <div class="team-grid">
+      <div class="team-member reveal">
+        <div class="photo-wrap">
+          <span class="initials">CR</span>
+          <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=500&q=80&auto=format&fit=crop" alt="Camille Rousseau">
+        </div>
+        <h4>Camille Rousseau</h4>
+        <div class="role">Founder &amp; Creative Director</div>
+        <p>Former Dior atelier, founded Maison Éclat in 2016 with a single rack of twelve coats.</p>
+        <div class="social-mini">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="team-member reveal" style="transition-delay: 0.08s;">
+        <div class="photo-wrap">
+          <span class="initials">IM</span>
+          <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=500&q=80&auto=format&fit=crop" alt="Idris Malik">
+        </div>
+        <h4>Idris Malik</h4>
+        <div class="role">Head Pattern Cutter</div>
+        <p>Trained on Savile Row. Chalks every pattern by hand, single-ply, against the selvedge.</p>
+        <div class="social-mini">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="team-member reveal" style="transition-delay: 0.16s;">
+        <div class="photo-wrap">
+          <span class="initials">AD</span>
+          <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=500&q=80&auto=format&fit=crop" alt="Anaïs Dubois">
+        </div>
+        <h4>Anaïs Dubois</h4>
+        <div class="role">Textile Sourcing</div>
+        <p>Travels to mills in Lyon, Varanasi and Kashmir every quarter to select cloth by hand.</p>
+        <div class="social-mini">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <div class="team-member reveal" style="transition-delay: 0.24s;">
+        <div class="photo-wrap">
+          <span class="initials">PK</span>
+          <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=500&q=80&auto=format&fit=crop" alt="Priya Kapoor">
+        </div>
+        <h4>Priya Kapoor</h4>
+        <div class="role">Jaipur Atelier Partnerships</div>
+        <p>Leads the collaboration with forty karigar families across Jaipur, Varanasi and Kutch.</p>
+        <div class="social-mini">
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ATELIERS — Two cities -->
+<section class="section">
+  <div class="container">
+    <div class="section-head-italic center reveal" style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-map-location-dot"></i> The Ateliers</div>
+      <h2 style="font-family: var(--font-display); font-style: italic; font-size: clamp(32px, 4vw, 46px); line-height: 1.15;">Two cities, one standard.</h2>
+      <p style="margin: 16px auto 0; max-width: 600px;">A quiet collaboration between Paris and Jaipur — both take handwork equally seriously.</p>
+    </div>
+
+    <div class="ateliers-split">
+      <div class="atelier-card reveal">
+        <div class="atelier-img">
+          <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=900&q=80&auto=format&fit=crop" alt="Paris atelier">
+          <div class="atelier-city"><i class="fas fa-map-pin"></i> Paris, France</div>
+        </div>
+        <div class="atelier-body">
+          <h3>The Paris Atelier</h3>
+          <div class="atelier-subtitle">Pattern, Cut &amp; Finish</div>
+          <p>A courtyard studio in the 6th arrondissement where every pattern is drafted by hand, every coat is fitted on three bodies, and every hem is fell-stitched by the same seamstress who began it.</p>
+          <div class="address">
+            <i class="fas fa-location-dot"></i> 12 Rue de Sèvres, 75006 Paris<br>
+            <i class="fas fa-clock"></i> Tue – Sat · 11:00 – 19:00 CET
+          </div>
+        </div>
+      </div>
+
+      <div class="atelier-card reveal" style="transition-delay: 0.1s;">
+        <div class="atelier-img">
+          <img src="https://images.unsplash.com/photo-1609743522653-52354461eb27?w=900&q=80&auto=format&fit=crop" alt="Jaipur karigar house">
+          <div class="atelier-city"><i class="fas fa-map-pin"></i> Jaipur, India</div>
+        </div>
+        <div class="atelier-body">
+          <h3>The Jaipur Karigar House</h3>
+          <div class="atelier-subtitle">Embroidery, Zari &amp; Leather</div>
+          <p>A dedicated studio for our karigar partners — zari and resham embroidery, block-printing, and vegetable-tanned leatherwork, all finished in numbered runs of forty or fewer pieces.</p>
+          <div class="address">
+            <i class="fas fa-location-dot"></i> Karigar House, C-Scheme, Jaipur 302001<br>
+            <i class="fas fa-clock"></i> Visits by appointment · Mon – Fri
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AS SEEN IN -->
+<section class="press-strip">
+  <div class="container">
+    <div class="press-kicker reveal">As Seen In</div>
+    <div class="press-logos reveal">
+      <div class="logo sans">VOGUE</div>
+      <div class="logo">Harper's Bazaar</div>
+      <div class="logo serif-cap">ELLE</div>
+      <div class="logo">Financial Times</div>
+      <div class="logo sans">MONOCLE</div>
+      <div class="logo">The Wall Street Journal</div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers-section">
+  <div class="container">
+    <div class="section-head-italic center reveal" style="text-align: center;">
+      <div class="eyebrow" style="justify-content: center;"><i class="fas fa-chart-simple"></i> The House, in Numbers</div>
+      <h2 style="font-family: var(--font-display); font-style: italic; font-size: clamp(32px, 4vw, 46px); line-height: 1.15;">A decade, counted quietly.</h2>
+    </div>
+
+    <div class="numbers-grid">
+      <div class="number-block reveal">
+        <span class="big" data-count="10">10</span>
+        <div class="label">Years of Craft</div>
+      </div>
+      <div class="number-block reveal" style="transition-delay: 0.08s;">
+        <span class="big" data-count="40" data-suffix="+">40+</span>
+        <div class="label">Artisan Partners</div>
+      </div>
+      <div class="number-block reveal" style="transition-delay: 0.16s;">
+        <span class="big" data-count="12" data-suffix="k">12k</span>
+        <div class="label">Pieces Hand-Finished</div>
+      </div>
+      <div class="number-block reveal" style="transition-delay: 0.24s;">
+        <span class="big" data-count="2">2</span>
+        <div class="label">Cities of Craft</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL QUOTE -->
+<section class="final-quote">
+  <div class="container">
+    <div class="seal-mark reveal"><i class="fas fa-spa"></i></div>
+    <blockquote class="reveal">
+      "Luxury is not the weight of gold.<br>It is the patience of the hand that placed each thread — and the promise that someone, somewhere, still cares."
+    </blockquote>
+    <div class="who reveal">— Élodie Marchand, Patron of the House</div>
+  </div>
+</section>
+
+<!-- NEWSLETTER -->
+<section class="newsletter-band">
+  <div class="container">
+    <h2 style="font-size: 36px; font-style: italic;">Join the Atelier List</h2>
+    <p>One letter a fortnight — first word on small-batch drops, atelier stories and the occasional pattern-cutting note. Never more, never sold.</p>
+    <form class="newsletter-form" onsubmit="event.preventDefault(); this.reset(); showToast('Welcome to the Atelier List');">
+      <input type="email" placeholder="Your email address" required>
+      <button type="submit">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="brand">MAISON ÉCLAT</a>
+      <p style="margin-top: 16px; max-width: 280px;">
+        Hand-finished ready-to-wear from ateliers in Paris and craft partners in Jaipur, Varanasi, Kutch and Kashmir. Founded 2016.
+      </p>
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <span class="badge-soft"><i class="fas fa-certificate"></i> Certified Handmade</span>
+        <span class="badge-soft"><i class="fas fa-award"></i> GI-Tagged Crafts</span>
+      </div>
+      <div class="footer-social">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+      </div>
+    </div>
+    <div>
+      <h5>Shop</h5>
+      <ul>
+        <li><a href="products.html?cat=Outerwear">Outerwear</a></li>
+        <li><a href="products.html?cat=Dresses">Dresses</a></li>
+        <li><a href="products.html?cat=Knitwear">Knitwear</a></li>
+        <li><a href="products.html?cat=Accessories">Accessories</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Help</h5>
+      <ul>
+        <li><a href="contact.html">Contact Us</a></li>
+        <li><a href="cart.html">Your Bag</a></li>
+        <li><a href="about.html">Size Guide</a></li>
+        <li><a href="about.html">Shipping &amp; Returns</a></li>
+      </ul>
+    </div>
+    <div>
+      <h5>Ateliers</h5>
+      <p><i class="fas fa-location-dot" style="color: var(--gold);"></i> 12 Rue de Sèvres<br>75006 Paris, France</p>
+      <p style="margin-top: 10px;"><i class="fas fa-location-dot" style="color: var(--gold);"></i> Karigar House, C-Scheme<br>Jaipur 302001, India</p>
+      <p style="margin-top: 10px;">bonjour@maisoneclat.com<br>+33 1 42 00 16 16</p>
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <span>© 2026 Maison Éclat. All rights reserved.</span>
+    <span>Privacy · Terms · Crafted with care</span>
+  </div>
+</footer>
+
+<!-- BACK TO TOP -->
+<button class="back-to-top" id="backToTop" aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- CART DRAWER + TOAST -->
+<div class="cart-overlay" id="cartOverlay"></div>
+<aside class="cart-drawer" id="cartDrawer">
+  <div class="cart-drawer-head">
+    <h4 style="margin: 0; font-size: 20px; font-style: italic;">Your Bag</h4>
+    <button class="icon-btn" id="cartDrawerClose" aria-label="Close"><i class="fa fa-times"></i></button>
+  </div>
+  <div class="cart-drawer-body" id="cartDrawerBody"></div>
+  <div class="cart-drawer-foot" id="cartDrawerFoot"></div>
+</aside>
+<div class="toast-box" id="toastBox"></div>
+
+<script src="assets/js/store.js"></script>
+<script>
+(function() {
+  'use strict';
+
+  var $ = function(s) { return document.querySelector(s); };
+  var $$ = function(s) { return Array.prototype.slice.call(document.querySelectorAll(s)); };
+
+  // Frosted header + progress + back-to-top
+  try {
+    var header = $('.site-header');
+    var bar = $('#progressBar');
+    var top = $('#backToTop');
+    var ticking = false;
+
+    function paint() {
+      var y = window.scrollY || 0;
+      if (header) header.classList.toggle('scrolled', y > 10);
+      if (top) top.classList.toggle('show', y > 500);
+      if (bar) {
+        var h = document.documentElement.scrollHeight - window.innerHeight;
+        bar.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+      }
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(paint);
+      }
+    }, { passive: true });
+
+    paint();
+
+    if (top) {
+      top.addEventListener('click', function() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+  } catch(e) {}
+
+  // GSAP ScrollTrigger reveals
+  try {
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Batch reveal
+      ScrollTrigger.batch('.reveal', {
+        onEnter: function(batch) {
+          gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            stagger: 0.12,
+            ease: 'power3.out',
+            overwrite: true
+          });
+        },
+        start: 'top 88%',
+        once: true
+      });
+
+      // Hero dramatic entrance
+      gsap.from('.maison-hero h1', {
+        opacity: 0,
+        y: 60,
+        duration: 1.4,
+        ease: 'expo.out',
+        delay: 0.2
+      });
+
+      // Timeline items stagger
+      gsap.utils.toArray('.timeline-item').forEach(function(item, i) {
+        gsap.from(item, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 85%'
+          },
+          opacity: 0,
+          x: -30,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+      });
+
+      // Manifesto card hover lift
+      gsap.utils.toArray('.manifesto-card').forEach(function(card, i) {
+        gsap.from(card, {
+          scrollTrigger: {
+            trigger: card,
+            start: 'top 85%'
+          },
+          opacity: 0,
+          y: 40,
+          duration: 0.9,
+          delay: i * 0.1,
+          ease: 'power3.out'
+        });
+      });
+
+      // Number count-up
+      $$('[data-count]').forEach(function(el) {
+        ScrollTrigger.create({
+          trigger: el,
+          start: 'top 85%',
+          once: true,
+          onEnter: function() {
+            var target = +el.getAttribute('data-count');
+            var suf = el.getAttribute('data-suffix') || '';
+            var t0 = performance.now();
+            var dur = 1400;
+
+            (function tick(t) {
+              var p = Math.min(1, (t - t0) / dur);
+              var e = 1 - Math.pow(1 - p, 3);
+              el.textContent = Math.round(target * e) + suf;
+              if (p < 1) requestAnimationFrame(tick);
+            })(t0);
+          }
+        });
+      });
+
+      // Pull quote reveal
+      gsap.from('.pull-quote blockquote', {
+        scrollTrigger: {
+          trigger: '.pull-quote',
+          start: 'top 75%'
+        },
+        opacity: 0,
+        y: 40,
+        duration: 1.2,
+        ease: 'power3.out'
+      });
+
+      // Final quote parallax
+      gsap.to('.final-quote .seal-mark', {
+        scrollTrigger: {
+          trigger: '.final-quote',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        rotation: 360,
+        ease: 'none'
+      });
+    }
+  } catch(e) {}
+
+  // Preloader
+  window.addEventListener('load', function() {
+    setTimeout(function() {
+      var pre = document.getElementById('preloader');
+      if (pre) pre.classList.add('done');
+    }, 400);
+  });
+
+  // Safety net
+  setTimeout(function() {
+    var pre = document.getElementById('preloader');
+    if (pre) pre.classList.add('done');
+  }, 3000);
+
+})();
+</script>
+</body>
+</html>
